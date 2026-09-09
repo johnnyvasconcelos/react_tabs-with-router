@@ -1,7 +1,7 @@
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from './Home';
 import TabsPage from './Tabs';
@@ -29,7 +29,7 @@ export const App = () => (
               isActive ? 'navbar-item is-active' : 'navbar-item'
             }
           >
-            Home
+            Tabs
           </NavLink>
         </div>
       </div>
@@ -38,6 +38,7 @@ export const App = () => (
     <div className="section">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="home" element={<Navigate to="/" />} />
         <Route path="tabs">
           <Route index element={<TabsPage />} />
           <Route path=":tabId" element={<TabsPage />} />
