@@ -1,10 +1,10 @@
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
-import { Link, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route } from 'react-router-dom';
 
 import Home from './Home';
-import Tabs from './Tabs';
+import TabsPage from './Tabs';
 
 export const App = () => (
   <>
@@ -15,12 +15,22 @@ export const App = () => (
     >
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item is-active">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? 'navbar-item is-active' : 'navbar-item'
+            }
+          >
             Home
-          </Link>
-          <Link to="/tabs" className="navbar-item">
-            Tabs
-          </Link>
+          </NavLink>
+          <NavLink
+            to="/tabs"
+            className={({ isActive }) =>
+              isActive ? 'navbar-item is-active' : 'navbar-item'
+            }
+          >
+            Home
+          </NavLink>
         </div>
       </div>
     </nav>
@@ -28,8 +38,9 @@ export const App = () => (
     <div className="section">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tabs" element={<Tabs />}>
-          <Route path=":tabId" element={<Tabs />} />
+        <Route path="tabs">
+          <Route index element={<TabsPage />} />
+          <Route path=":tabId" element={<TabsPage />} />
         </Route>
         <Route
           path="*"
